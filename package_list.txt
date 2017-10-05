@@ -1,7 +1,8 @@
 bspwm
 feh
 fcitx
-fcitx-anthy
+fcitx-im
+fcitx-mozc
 xorg-xsetroot
 rofi
 termite
