@@ -25,3 +25,7 @@ xorg-xinput
 spotify
 slack-desktop
 discord
+terminus-font
+bind-tools
+adobe-source-code-pro-fonts
+

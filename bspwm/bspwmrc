@@ -35,3 +35,5 @@ fcitx -d
 bspc config focus_follows_pointer true
 
 xset m 0 0
+
+compton -b
