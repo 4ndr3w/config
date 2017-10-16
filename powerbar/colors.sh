@@ -1,0 +1,15 @@
+#!/bin/sh
+
+export SELECTED_BACKGROUND_BACKGROUND="%{B#abe15b}"
+export SELECTED_TEXT_BACKGROUND="%{F#abe15b}"
+export SELECTED_TEXT_COLOR="%{F#000000}"
+export BACKGROUND_BACKGROUND_COLOR="%{B#303030}"
+export BACKGROUND_TEXT_COLOR="%{F#303030}"
+export WHITE_TEXT="%{F#FFFFFF}"
+export ARROW="\ue0b0"
+export ARROW_LEFT="\ue0b2"
+export ARROW_OUTLINE_LEFT="\ue0b3"
+export ENDC='%{B#000000}%{F#FFFFFF}'
+export ALIGN_LEFT="%{l}"
+export ALIGN_RIGHT="%{r}"
+
