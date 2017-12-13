@@ -6,6 +6,7 @@ WORKSPACES="..."
 CLOCK="..."
 BATTERY="..."
 VOLUME="..."
+SONG="..."
 while read -r line; do
 	case $line in
 		W*) # Workspace info
@@ -20,6 +21,9 @@ while read -r line; do
 		V*) # Volume
 			VOLUME=${line#?}
 		;;
+                M*) # Song
+                        SONG=${line#?}
+                ;;
 	esac
 	
 	echo -n $ALIGN_LEFT$WORKSPACES
@@ -31,10 +35,11 @@ while read -r line; do
 	echo -n $WHITE_TEXT
 	echo -n $BACKGROUND_BACKGROUND_COLOR
 
-#	echo -n " 音楽"
-#	echo -n " Paused "
+	echo -n " 音楽"
 
-#	echo -n $ARROW_OUTLINE_LEFT
+	echo -n " $SONG "
+
+	echo -n $ARROW_OUTLINE_LEFT
 
 	echo -n " 音量 "
 	echo -n "$VOLUME "

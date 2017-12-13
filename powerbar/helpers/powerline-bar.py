@@ -45,9 +45,9 @@ def printGlyph(w, isStart=False, isEnd=False):
 
 
 def getStatus(state):
-	if state is "O" or state is "F":
+	if state is "O" or state is "F" or state is "U":
 		return "Focused"
-	elif state is "o":
+	elif state is "o" or state is "u":
 		return "Active"
 	else:
 		return "Empty"
