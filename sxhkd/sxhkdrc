@@ -8,14 +8,22 @@ super + Return
 
 # program launcher
 super + @space
-	rofi -show run
+    rofi -show run
+
+# SSH
+alt + grave
+    rofi -show ssh -disable-history -no-parse-known-hosts
 
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
 
-super + grave
-	bspc node @/ -R 90
+super + n
+    nautilus &
+
+super + f
+    firefox-launch &
+
 
 #
 # bspwm hotkeys
@@ -26,20 +34,20 @@ super + alt + Escape
 	bspc quit
 
 # close and kill
-super + {_,shift + }w
-	bspc node -{c,k}
+super + shift + w
+	bspc node -c
 
 # alternate between the tiled and monocle layout
 super + m
 	bspc desktop -l next
 
 # if the current node is automatic, send it to the last manual, otherwise pull the last leaf
-super + y
-	bspc query -N -n focused.automatic && bspc node -n last.!automatic || bspc node last.leaf -n focused
+#super + y
+#	bspc query -N -n focused.automatic && bspc node -n last.!automatic || bspc node last.leaf -n focused
 
 # swap the current node and the biggest node
-super + g
-	bspc node -s biggest.local
+#super + g
+#	bspc node -s biggest.local
 
 #
 # state/flags
@@ -58,8 +66,8 @@ super + ctrl + {x,y,z}
 #
 
 # focus the node in the given direction
-#super + {_,shift + }{Left,Down,Up,Right}
-#	bspc node -{f,s} {west,south,north,east}
+super + {_,shift + }{Left,Down,Up,Right}
+	bspc node -{f,s} {west,south,north,east}
 
 # focus the node for the given path jump
 super + {p,b,comma,period}
@@ -77,6 +85,9 @@ super + bracket{left,right}
 #super + {grave,Tab}
 #	bspc {node,desktop} -f last
 
+super + grave
+    bspc node @/ -R 90
+
 # focus the older or newer node in the focus history
 super + {o,i}
 	bspc wm -h off; \
@@ -92,7 +103,7 @@ super + {_,shift + }{1-9,0}
 #
 
 # preselect the direction
-super + ctrl + {Left, Down, Up, Right}
+super + ctrl + {Left,Down,Up,Right}
 	bspc node -p {west,south,north,east}
 
 # preselect the ratio
@@ -111,17 +122,23 @@ super + ctrl + shift + space
 # move/resize
 #
 
+alt + {Right,Left}
+    /home/andrew/.config/bspwm/bspwm_resize {-p,-n} -x -s 20
+
+alt + {Down,Up}
+    /home/andrew/.config/bspwm/bspwm_resize {-p,-n} -y -s 20
+
 # expand a window by moving one of its side outward
-super + alt + {h,j,k,l}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+#super + alt + {Left,Down,Up,Right}
+#	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
 # contract a window by moving one of its side inward
-super + alt + shift + {h,j,k,l}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+#super + alt + shift + {Left,Down,Up,Right}
+#	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
 
 # move a floating window
-super + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
+#super + {Left,Down,Up,Right}
+#	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 # cycle windows
 alt + {_,shift + }Tab
@@ -132,16 +149,15 @@ alt + {_,shift + }Tab
 
 # Raises volume
 XF86AudioRaiseVolume
-    amixer set Master 2%+
+    amixer set Master 2%+ && ~/powerbar/helpers/volume_once.sh
 
 # Lowers volume
 XF86AudioLowerVolume
-    amixer set Master 2%-
+    amixer set Master 2%- && ~/powerbar/helpers/volume_once.sh
 
 # Mutes
 XF86AudioMute
-	amixer -D pulse set Master 1+ toggle
-
+	amixer -D pulse set Master 1+ toggle && ~/powerbar/helpers/volume_once.sh
 
 # Brightness goes up
 XF86MonBrightnessUp

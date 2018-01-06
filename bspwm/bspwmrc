@@ -1,11 +1,13 @@
 #!/bin/sh
 
+wmname LG3D
+
 sxhkd &
 
 bspc config merge_overlapping_monitors true
+bspc config presel_feedback_color "#5B6073"
 
-bspc monitor DVI-D-0 -d 一 二 三 四 五 
-bspc monitor DP-2 -d 六 七 八 九 十
+bspc monitor -d 一 二 三 四 五 六 七 八 九 十
 
 bspc config border_width         2
 bspc config window_gap          0
@@ -15,25 +17,32 @@ bspc config borderless_monocle   true
 bspc config gapless_monocle      true
 
 bspc config click_to_focus true
+bspc config focus_follows_pointer true
 
 bspc rule -a discord desktop=^6
-bspc rule -a Slack desktop=^6
+bspc rule -a Slack desktop=^7
+
+stalonetray &
 
 xsetroot -cursor_name left_ptr
 
-feh --bg-center ~/.config/wallpapers/yiNFzA4.png
+feh --bg-scale ~/config-git/wallpapers/yiNFzA4.png 
+#$HOME/.config/polybar/launch.sh
+nm-applet &
 
-$HOME/.config/polybar/launch.sh
+xmodmap ~/.Xmodmap
 
 redshift &
+
+xinput --set-prop "TPPS/2 IBM TrackPoint" "Device Accel Constant Deceleration" 0.4
+
 
 # Hack for spotify
 bspc config external_rules_command ~/.config/bspwm/electron_rules
 
+#owncloud &
+
 fcitx -d
-
-bspc config focus_follows_pointer true
-
-xset m 0 0
-
 compton -b
+$HOME/powerbar/startbar.sh 
+
