@@ -14,4 +14,7 @@ python helpers/powerline-bar.py > $PANEL_FIFO &
 ./helpers/battery.sh > $PANEL_FIFO &
 ./helpers/volume.sh > $PANEL_FIFO & 
 ./helpers/music.sh > $PANEL_FIFO &
+./helpers/tasks.sh > $PANEL_FIFO &
+python helpers/wanikani.py > $PANEL_FIFO &
 ./bar.sh < $PANEL_FIFO | lemonbar -p -f "Source Code Pro for Powerline:size=10" -f "Source Han Sans JP:size=9" -g 1290x16+0+0 
+rm $PANEL_FIFO

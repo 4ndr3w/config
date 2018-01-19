@@ -4,10 +4,16 @@
 # ROS env
 if [ -f /.dockerenv ]; then
     source /opt/ros/kinetic/setup.zsh
-    source ~/Sailbot_ROS/devel/setup.zsh
+#    source ~/Sailbot_ROS/devel/setup.zsh
 #    source /home/andrew/ros/dragglebot/devel/setup.zsh 
+    source ~/omnirosv2/devel/setup.zsh
+    source ~/iarc7/devel/setup.zsh
+  export MORSE_BLENDER="/home/andrew/iarc7/blender-2.78c-linux-glibc219-x86_64/blender"
+#
 fi
 
+
+export TERM=xterm-256color
 # Path to your oh-my-zsh installation.
 export ZSH=/home/andrew/.oh-my-zsh
 
@@ -93,7 +99,6 @@ source $ZSH/oh-my-zsh.sh
 alias catkin_make="catkin_make -DPYTHON_EXECUTABLE=/usr/bin/python2"
 
 
-export TERM=xterm-256color
 
 #source /usr/lib/python3.6/site-packages/powerline/bindings/zsh/powerline.zsh
 stty -ixon
@@ -113,5 +118,18 @@ ros() {
     docker start ros > /dev/null
     docker exec $ROS_DOCKER_ARGS ros /bin/zsh -c "cd \"`pwd`\" && source /opt/ros/kinetic/setup.zsh && $CMD"
 }
- 
-alias rviz="ros rviz"
+
+alias wkupdate="python ~/powerbar/helpers/wanikani.py once > /tmp/topbar.pipe"
+
+alias matlab-launch="matlab -desktop"
+alias matlab-cli="matlab -nojvm -nodisplay -nosplash"
+alias devrosuri="export ROS_MASTER_URI=http://172.16.1.2:11311"
+
+# Aliases not inside the container
+if [ ! -f /.dockerenv ]; then
+  for c in `cat ~/.config/ros-commands`
+  do
+    eval "alias \"$c\"=\"ros $c \$@\""
+  done
+fi
+
